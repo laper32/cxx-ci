@@ -8,9 +8,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
       - name: Install packages, or cache.
         uses: actions/cache@v3
-        id: cache
         with: |
           ${{ github.workspace }}/.choco/cache
         run: |
