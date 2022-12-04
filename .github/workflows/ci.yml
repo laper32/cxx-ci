@@ -9,11 +9,17 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: johnwason/vcpkg-action@v3
+      - name: Installing packages, and cache everything
         runs-on: windows-latest
         with:
           pkgs: boost-date-time boost-system openssl
           triplet: x86-windows-static
+
+      # - uses: johnwason/vcpkg-action@v3
+      #   runs-on: windows-latest
+      #   with:
+      #     pkgs: boost-date-time boost-system openssl
+      #     triplet: x86-windows-static
 
 
       # - name: Build - Rust
