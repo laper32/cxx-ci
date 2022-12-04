@@ -8,11 +8,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Build - Rust
+      - name: Install packages, or cache.
+        uses: actions/cache@v3
+        id: cache
+        with: |
+          ${{ github.workspace }}/.choco/cache
         run: |
-          cargo --version
-          rustc --version
-          cargo build --release
+          choco install boost-msvc-14.3
+        # uses: # choco install boost-msvc-14.3
+
+      # - name: Build - Rust
+      #   run: |
+      #     cargo --version
+      #     rustc --version
+      #     cargo build --release
       
       - name: Build - CXX
         run: |
