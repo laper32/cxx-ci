@@ -5,13 +5,16 @@ on: [push]
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+    matrix:
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - uses: actions/checkout@v1
 
       - name: Installing packages, and cache everything
         uses: johnwason/vcpkg-action@v3
-        runs-on: windows-latest
+        if: matrix.os == 'windows-latest'
         with:
           pkgs: boost-date-time boost-system openssl
           triplet: x86-windows-static
