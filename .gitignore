@@ -2,3 +2,7 @@
 
 .vs/
 out/
+
+# Added by cargo
+
+/target
