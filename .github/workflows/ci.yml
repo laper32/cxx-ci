@@ -32,6 +32,12 @@ jobs:
           repository: alliedmodders/hl2sdk
           ref: csgo
           path: hl2sdk/csgo
+      - name: Installing packages
+        if: matrix.os == 'windows-latest'
+        uses: johnwason/vcpkg-action@v3
+        with:
+          pkgs: boost openssl
+          triplet: x86-windows-static
       - name: Win - Build
         if: matrix.os == 'windows-latest'
         run: |
