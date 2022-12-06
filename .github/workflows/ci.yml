@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: alliedmodders/sourcemod
-          path: sourcemod
+          path: ${{ github.workspace }}/sourcemod
           submodules: recursive
       - name: Checkout MetaMod
         uses: actions/checkout@v3
@@ -34,9 +34,16 @@ jobs:
         with:
           fetch-depth: 99999
           path: ${{ github.workspace }}
-      - name: Build
+      - name: Win - Build
+        if: matrix.os == 'windows-latest'
         run: |
-          ls
+          $env:HL2SDK_CSGO="$GITHUB_WORKSPACE\hl2sdk\csgo"
+          $env:SOURCEMOD="$GITHUB_WORKSPACE\sourcemod"
+          $env:METAMOD_SOURCE="$GITHUB_WORKSPACE\metamod-source"
+          $CPUCore=$(Get-WmiObject -Class Win32_Processor | Select-Object -Property Name, Number*).NumberOfCores
+          mkdir build; cd build
+          cmake -G "Visual Studio 17 2022" -A Win32 -DCMAKE_BUILD_TYPE=Release -DTARGET_ARCH=x86 -DHL2SDK_ENGINE_NAME=csgo ..
+          cmake --build . --config Release -- /m:$CPUCore
       
 
 # name: Build
