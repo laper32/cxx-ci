@@ -11,24 +11,26 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
+      - name: Clone projects
+    steps:
       - name: Checkout SourceMod
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: alliedmodders/sourcemod
           submodules: recursive
       - name: Checkout MetaMod
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: alliedmodders/metamod-source
           submodules: recursive
       - name: Checkout CSGO SDK
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: alliedmodders/hl2sdk
           ref: csgo
           path: hl2sdk/csgo
       - name: Checkout Source Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         # with:
           # fetch-depth: 99999
           # path: ${{ github.workspace }}
@@ -40,58 +42,3 @@ jobs:
         run: |
           ls $GITHUB_WORKSPACE
       
-# ls $GITHUB_WORKSPACE
-# ls ..
-# ls
-
-# $CPUCore=$(Get-WmiObject -Class Win32_Processor | Select-Object -Property Name, Number*).NumberOfCores
-# mkdir build; cd build
-# cmake -G "Visual Studio 17 2022" -A Win32 -DCMAKE_BUILD_TYPE=Release -DTARGET_ARCH=x86 -DHL2SDK_ENGINE_NAME=csgo ../
-# cmake --build . --config Release -- /m:$CPUCore
-# name: Build
-
-# on: [push]
-
-# jobs:
-#   name: ${{ matrix.os_short }} - Build
-#   runs-on: ${{ matrix.os }}
-#   strategy:
-#     fail-fast: false
-#     matrix:
-#       os: [ubuntu-latest, windows-latest]
-#     include:
-#       - os: ubuntu-latest
-#         os_short: Lin
-#       - os: windows-latest
-#         os_short: Win
-#   steps:
-#     - name: Checkout SourceMod
-#       uses: actions/checkout@v3
-#       with: 
-#         repository: alliedmodders/sourcemod
-#         path: sourcemod
-#         submodules: recursive
-#     - name: Checkout CSGO SDK
-#       uses: actions/checkout@v3
-#       with:
-#         repository: alliedmodders/hl2sdk
-#         ref: csgo
-#         path: hl2sdk/csgo
-#     - name: Checkout MetaMod
-#       uses: actions/checkout@v3
-#       with:
-#         repository: alliedmodders/metamod-source
-#         submodules: recursive
-#     - name: Checkout Project
-#       uses: actions/checkout@v3
-#       with:
-#         fetch-depth: 99999
-#         path: ${{ github.workspace }}
-#     - name: Build
-#       working-directory: ${{ github.workspace }}
-#       run: |
-#         $CPUCore=$(Get-WmiObject -Class Win32_Processor | Select-Object -Property Name, Number*).NumberOfCores
-#         mkdir build
-#         cd build
-#         cmake -G "Visual Studio 17 2022" -A Win32 -DCMAKE_BUILD_TYPE=Release -DTARGET_ARCH=x86 -DHL2SDK_ENGINE_NAME=csgo ..
-#         cmake --build . --config Release -- /m:$CPUCore
