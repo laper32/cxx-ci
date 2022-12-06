@@ -11,27 +11,27 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
       - name: Checkout SourceMod
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: alliedmodders/sourcemod
           submodules: recursive
+          path: sourcemod
       - name: Checkout MetaMod
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: alliedmodders/metamod-source
           submodules: recursive
+          path: metamod-source
       - name: Checkout CSGO SDK
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: alliedmodders/hl2sdk
           ref: csgo
-          path: hl2sdk/csgo
-      - name: Checkout Source Code
-        uses: actions/checkout@v2
-        # with:
-          # fetch-depth: 99999
-          # path: ${{ github.workspace }}
+          path: hl2sdk-csgo
       - name: Win - Build
         if: matrix.os == 'windows-latest'
           # $env:HL2SDK_CSGO="$GITHUB_WORKSPACE\hl2sdk\csgo"
