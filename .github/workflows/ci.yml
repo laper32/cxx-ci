@@ -34,6 +34,9 @@ jobs:
         with:
           fetch-depth: 99999
           path: ${{ github.workspace }}
+      - name: Build
+        run: |
+          ls
       
 
 # name: Build
