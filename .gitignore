@@ -2,7 +2,7 @@
 
 .vs/
 out/
-
+build/
 # Added by cargo
 
 /target
