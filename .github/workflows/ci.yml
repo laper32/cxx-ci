@@ -38,6 +38,7 @@ jobs:
           # $env:SOURCEMOD="$GITHUB_WORKSPACE\sourcemod"
           # $env:METAMOD_SOURCE="$GITHUB_WORKSPACE\metamod-source"
         run: |
+          ls ..
           ls
 
           $CPUCore=$(Get-WmiObject -Class Win32_Processor | Select-Object -Property Name, Number*).NumberOfCores
