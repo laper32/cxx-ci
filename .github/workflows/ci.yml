@@ -31,7 +31,7 @@ jobs:
         with:
           repository: alliedmodders/hl2sdk
           ref: csgo
-          path: hl2sdk-csgo
+          path: hl2sdk/csgo
       - name: Win - Build
         if: matrix.os == 'windows-latest'
         run: |
