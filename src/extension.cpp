@@ -36,7 +36,21 @@
  * @brief Implement extension code here.
  */
 
-Sample g_Sample;		/**< Global singleton for extension's main interface */
+Extension g_Ext;		/**< Global singleton for extension's main interface */
 
-SMEXT_LINK(&g_Sample);
+SMEXT_LINK(&g_Ext);
 
+bool Extension::SDK_OnLoad(char *error, size_t maxlen, bool late)
+{
+    return SDKExtension::SDK_OnLoad(error, maxlen, late);
+}
+
+void Extension::SDK_OnUnload()
+{
+    return SDKExtension::SDK_OnUnload();
+}
+
+void Extension::SDK_OnAllLoaded()
+{
+    return SDKExtension::SDK_OnAllLoaded();
+}
